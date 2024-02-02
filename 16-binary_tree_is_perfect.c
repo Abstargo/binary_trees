@@ -14,7 +14,6 @@ int tree_is_perfect(const binary_tree_t *tree)
 		left_height = 1 + tree_is_perfect(tree->left);
 		right_height = 1 + tree_is_perfect(tree->right);
 
-		/* Check if left and right subtrees have equal height and are not zero */
 		if (right_height == left_height && right_height != 0)
 			return right_height;
 
