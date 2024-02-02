@@ -1,46 +1,54 @@
 #include "binary_trees.h"
 
 /**
- * binary_tree_height - Measures the height of a binary tree
- * @tree: Pointer to the root node of the tree to measure the height
- *
- * Return: Height of the tree, 0 if tree is NULL
+ * tree_is_perfect - Checks if a binary tree is perfect and returns the height
+ * @tree: Pointer to the root node of the tree
+ * Return: Height of the tree if perfect, 0 otherwise
  */
-size_t binary_tree_height(const binary_tree_t *tree)
+int tree_is_perfect(const binary_tree_t *tree)
 {
-	size_t left_height, right_height;
+	int left_height = 0, right_height = 0;
 
-	if (tree == NULL)
-		return (0);
+	if (tree->left && tree->right)
+	{
+		left_height = 1 + tree_is_perfect(tree->left);
+		right_height = 1 + tree_is_perfect(tree->right);
 
-	left_height = binary_tree_height(tree->left);
-	right_height = binary_tree_height(tree->right);
+		/* Check if left and right subtrees have equal height and are not zero */
+		if (right_height == left_height && right_height != 0)
+			return right_height;
 
-	return ((left_height > right_height ? left_height : right_height) + 1);
+		return 0;
+	}
+	else if (!tree->left && !tree->right)
+	{
+		/* Leaf node is always considered perfect */
+		return 1;
+	}
+	else
+	{
+		/* Node has only one child, not perfect */
+		return 0;
+	}
 }
 
 /**
  * binary_tree_is_perfect - Checks if a binary tree is perfect
- * @tree: Pointer to the root node of the tree to check
- *
+ * @tree: Pointer to the root node of the tree
  * Return: 1 if the tree is perfect, 0 otherwise
  */
 int binary_tree_is_perfect(const binary_tree_t *tree)
 {
-	size_t left_height, right_height;
+	int result = 0;
 
-	/* Check if tree is NULL */
 	if (tree == NULL)
-		return (0);
-
-	/* Check if the tree is full */
-	if (!binary_tree_is_full(tree))
-		return (0);
-
-	/* Measure the height of the left and right subtrees */
-	left_height = binary_tree_height(tree->left);
-	right_height = binary_tree_height(tree->right);
-
-	/* Check if the left and right subtrees have the same height */
-	return (left_height == right_height);
+	{
+		/* An empty tree is not perfect */
+		return 0;
+	}
+	else
+	{
+		result = tree_is_perfect(tree);
+		return (result != 0);
+	}
 }
