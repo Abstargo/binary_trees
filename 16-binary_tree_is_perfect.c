@@ -15,19 +15,19 @@ int tree_is_perfect(const binary_tree_t *tree)
 		right_height = 1 + tree_is_perfect(tree->right);
 
 		if (right_height == left_height && right_height != 0)
-			return right_height;
+			return (right_height);
 
-		return 0;
+		return (0);
 	}
 	else if (!tree->left && !tree->right)
 	{
 		/* Leaf node is always considered perfect */
-		return 1;
+		return (1);
 	}
 	else
 	{
 		/* Node has only one child, not perfect */
-		return 0;
+		return (0);
 	}
 }
 
@@ -43,7 +43,7 @@ int binary_tree_is_perfect(const binary_tree_t *tree)
 	if (tree == NULL)
 	{
 		/* An empty tree is not perfect */
-		return 0;
+		return (0);
 	}
 	else
 	{
