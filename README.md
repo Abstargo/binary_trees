@@ -1,6 +1,6 @@
 # 0x1D. C - Binary trees
 
-More Info
+## More Info
 Data structures
 Please use the following data structures and types for binary trees. Don’t forget to include them in your header file.
 
@@ -25,13 +25,15 @@ struct binary_tree_s
 
 typedef struct binary_tree_s binary_tree_t;
 ```
-Binary Search Tree
+### Binary Search Tree
 ```
 typedef struct binary_tree_s bst_t;
 ```
-AVL Tree
+### AVL Tree
 ```
 typedef struct binary_tree_s avl_t;
 ```
-Max Binary Heap
+### Max Binary Heap
+```
 typedef struct binary_tree_s heap_t;
+```
